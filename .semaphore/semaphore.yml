@@ -1,0 +1,20 @@
+version: v1.0
+name: Test MyApp
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Build
+    task:
+      jobs:
+        - name: Build beams
+          commands:
+            - checkout
+            - cache restore
+            - echo "build and push beams"
+promotions:
+  - name: Deploy to Mobi
+    pipeline_file: pipeline_2.yml
+    auto_promote:
+      when: branch = 'master' AND result = 'passed'
