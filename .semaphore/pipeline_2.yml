@@ -12,7 +12,5 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 promotions:
-  - name: Deploy to Mobi
-    pipeline_file: pipeline_2.yml
-    auto_promote:
-      when: branch = 'master' AND result = 'passed'
+  - name: Deploy to Integ
+    pipeline_file: integ.yml
