@@ -14,9 +14,9 @@ blocks:
             - cache restore
             - echo "build and push beams"
 promotions:
-  - name: Deploy to Mobi
+  - name: Deploy to mobi
     pipeline_file: pipeline_2.yml
     auto_promote:
       when: branch = 'master' AND result = 'passed'
   - name: Deploy to integ
-    pipeline_file: pipeline_5.yml
+    pipeline_file: integ.yml
