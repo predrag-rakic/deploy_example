@@ -20,3 +20,5 @@ promotions:
       when: branch = 'master' AND result = 'passed'
   - name: Deploy to integ
     pipeline_file: integ.yml
+    auto_promote:
+      when: branch = 'rc' AND result = 'passed'
