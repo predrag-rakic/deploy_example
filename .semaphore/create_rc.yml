@@ -1,0 +1,21 @@
+version: v1.0
+name: Create release candidate branch
+blocks:
+  - name: Branch creator
+    task:
+      jobs:
+        - name: Create rc
+          commands:
+            - echo ${SEMAPHORE_GIT_URL}
+            - git clone https://x-access-token:3db46a6267462f776e527656441513b2d70151ff@github.com/${SEMAPHORE_GIT_URL:15}
+            - cd ${SEMAPHORE_PROJECT_NAME}
+            - cat .git/config
+            - git branch -a
+            - git checkout origin/master
+            - git checkout -b rc
+            - echo $SEMAPHORE_GIT_URL
+            - git push --set-upstream origin rc -f
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804

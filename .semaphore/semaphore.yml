@@ -13,6 +13,8 @@ blocks:
             - checkout
             - cache restore
             - echo "build and push beams"
+            - export DEPLOY_CREDS=bcmachine:$SEMAPHORE_PROJECT_NAME
+            - echo $DEPLOY_CREDS
 promotions:
   - name: Deploy to mobi
     pipeline_file: pipeline_2.yml
@@ -22,3 +24,5 @@ promotions:
     pipeline_file: integ.yml
     auto_promote:
       when: branch = 'rc' AND result = 'passed'
+  - name: Create rc branch
+    pipeline_file: create_rc.yml
